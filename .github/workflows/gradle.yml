@@ -49,9 +49,9 @@ jobs:
               QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
           with:
             # Directory to store the analysis results
-            results-dir: bin/qodana/results # optional, default is ${{ runner.temp }}/qodana/results
+            #results-dir: bin/qodana/results # optional, default is ${{ runner.temp }}/qodana/results
             # Directory to store Qodana caches
-            cache-dir: bin/qodana/caches # optional, default is ${{ runner.temp }}/qodana/caches
+            #cache-dir: bin/qodana/caches # optional, default is ${{ runner.temp }}/qodana/caches
             # Automatically restore and save Qodana caches using GitHub caches
             use-caches: true # optional, default is true
             # Upload Qodana results (SARIF, other artifacts, logs) as an artifact to the job
