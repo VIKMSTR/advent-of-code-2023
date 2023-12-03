@@ -22,3 +22,11 @@ h
 0app/src/main/kotlin/cz/vikk/aoc23/day01/Day01.kt,3/9/39534e766228a90bcfbb43e454e695fb28226b17
 d
 4app/src/test/kotlin/cz/vikk/aoc23/day01/Day01Test.kt,0/2/02418e6a7f26ed2c0a7ef7c3c5c0a9de731dd32d
+`
+0app/src/main/kotlin/cz/vikk/aoc23/day02/Day02.kt,e/b/ebdff36e111029f925e6b4c5e3f2f6bb94f45e8a
+d
+4app/src/test/kotlin/cz/vikk/aoc23/day02/Day02Test.kt,3/9/39ec9d1f26bc8030461d357246090b028b80bbde
+`
+0app/src/main/kotlin/cz/vikk/aoc23/day03/Day03.kt,a/4/a481cb3210a24d54d9e31ddf4cc723e1aace8d9c
+d
+4app/src/test/kotlin/cz/vikk/aoc23/day03/Day03Test.kt,f/4/f474b600a1a64a8a4d8d3aa281bac79483787942
