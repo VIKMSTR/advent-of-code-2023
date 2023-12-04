@@ -12,54 +12,54 @@ class Day04 {
     fun firstTask(dataLoader: ResourceDataLoader): Mono<Long> {
         return dataLoader.loadLinesFromFileFlux()
             .index()
-            .map {destructureCard(it!!.t1.toInt(), it.t2)}
+            .map { destructureCard(it!!.t1.toInt(), it.t2) }
             .map { collectPointsFromCard(it) }
-            .reduce{t,u -> t+u}
+            .reduce { t, u -> t + u }
     }
-    private fun destructureCard(index: Int,line: String): Card {
+
+    private fun destructureCard(index: Int, line: String): Card {
         val splitLine = line.split(indexSeparator)
         val numbers = splitLine[1].split(numbersSeparator)
         val winningNumbers = numberRegex.findAll(numbers[0]).toList().map { it.value.toInt() }.sorted().toList()
         val guessedNumbers = numberRegex.findAll(numbers[1]).toList().map { it.value.toInt() }.sorted().toList()
-        return Card(index,winningNumbers,guessedNumbers)
+        return Card(index, winningNumbers, guessedNumbers)
     }
 
-    private fun collectPointsFromCard(card: Card): Long{
-        val matchedNumbers = card.guessedNumbers.filter { card.winningNumbers.contains(it) }
-        return if (matchedNumbers.isNotEmpty()){
+    private fun collectPointsFromCard(card: Card): Long {
+        val matchedNumbers = card.matchedNumbers()
+        return if (matchedNumbers.isNotEmpty()) {
             2.0.pow((matchedNumbers.size - 1).toDouble()).toLong()
-            } else {
+        } else {
             0
         }
     }
 
-
     fun secondTask(dataLoader: ResourceDataLoader): Int {
-        val cards = mutableMapOf<Int,Int>() //index: amount
-
+        val cards = mutableMapOf<Int, Int>() //index: amount
+        //Implementation with side effect
         dataLoader.loadLinesFromFileFlux()
             .index()
-            .map {destructureCard(it!!.t1.toInt(), it.t2)}
-            .doOnNext{
-                cards.computeIfPresent(it.index) { _, mapValue -> mapValue + 1}
-                cards.computeIfAbsent(it.index) { _ -> 1 }
-                val currentValue = cards[it.index]?:1
+            .map { destructureCard(it!!.t1.toInt(), it.t2) }
+            .doOnNext {
+                cards.compute(it.index) { _, mapValue ->
+                    mapValue?.plus(1) ?: 1
+                }
+                val currentValue = cards[it.index] ?: 1
                 it.matchedNumbers().forEachIndexed { matchedIndex, _ ->
-                    val targetIndex = it.index+matchedIndex+1
-                    cards.computeIfPresent(targetIndex) { _, mapValue -> mapValue + currentValue }
-                    cards.computeIfAbsent(targetIndex) { _ -> currentValue }
+                    val targetIndex = it.index + matchedIndex + 1
+                    cards.compute(targetIndex) { _, mapValue ->
+                        mapValue?.plus(currentValue) ?: currentValue
+                    }
                 }
             }
             .subscribe()
-
-
         return cards.values.sum()
     }
 
 }
 
-data class Card(val index: Int, val winningNumbers: List<Int>,val guessedNumbers:List<Int>) {
+data class Card(val index: Int, val winningNumbers: List<Int>, val guessedNumbers: List<Int>) {
     fun matchedNumbers(): List<Int> {
-        return  guessedNumbers.filter { winningNumbers.contains(it) }
+        return winningNumbers.intersect(guessedNumbers.toSet()).toList()
     }
 }

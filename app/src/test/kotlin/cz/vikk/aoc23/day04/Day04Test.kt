@@ -32,6 +32,13 @@ class Day04Test {
     fun `run second task with real data`(){
         val tested = Day04()
         val result = tested.secondTask(ResourceDataLoader("/day04/realData.txt"))
-        println("Result of first task of day four is $result")
+        println("Result of second task of day four is $result")
+    }
+
+    @Test
+    fun `test second task with real data`(){
+        val tested = Day04()
+        val result = tested.secondTask(ResourceDataLoader("/day04/realData.txt"))
+        assertEquals(18846301,result)
     }
 }
