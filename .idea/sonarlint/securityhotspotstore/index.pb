@@ -30,3 +30,9 @@ d
 0app/src/main/kotlin/cz/vikk/aoc23/day03/Day03.kt,a/4/a481cb3210a24d54d9e31ddf4cc723e1aace8d9c
 d
 4app/src/test/kotlin/cz/vikk/aoc23/day03/Day03Test.kt,f/4/f474b600a1a64a8a4d8d3aa281bac79483787942
+`
+0app/src/main/kotlin/cz/vikk/aoc23/day04/Day04.kt,6/4/645610a5020740a1064d73fb8c2c153e1cea2ea2
+`
+0app/src/test/kotlin/cz/vikk/aoc23/day04/Day04.kt,3/d/3d19e89cb5fefe3b9fc1b36377146751be1c52d4
+d
+4app/src/test/kotlin/cz/vikk/aoc23/day04/Day04Test.kt,5/f/5f59b98e7c8681aa6e80b4eb03ed20349c1dc4c5
